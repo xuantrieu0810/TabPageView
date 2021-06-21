@@ -29,7 +29,7 @@ Here is an example of how to RootTabPageViewController.
 - You need to provide the following attributes:
   + menuTitles:  the list of titles on the Tabpage's menu bar
   + pageViewControllers:  child viewcontrollers located in the Tabpage corresponding to the titles on the menu bar
-  *The number of items of these 2 components must be equal and correspond to each other in terms of position in the array
+  > Note: --The number of items of these 2 components must be equal and correspond to each other in terms of position in the array
 - You can set the following default styles:
   + styleScrollPage: StyleScroll => scrolling of pages(viewcontrollers)
   + styleMenuTitle: StyleMenu => title bar style on menu
@@ -183,23 +183,23 @@ protocol TabPageDelegate: class {
 ```
 
 ### Customization
-- StyleScroll
-  + standard: page scroll with stops
-  + infinite: endless page scroll
-- StyleMenu 
-  + underLine:
-      case normal: white background color + black text color 
-      case selected: blue text color + blue underline color
-  + boderRound:
-      case normal: blue background color + white text color 
-      case selected: blue text color + rounded rectangle around text on white background
+# StyleScroll
+  - standard: page scroll with stops
+  - infinite: endless page scroll
+# StyleMenu 
+  - underLine:
+     + case normal: white background color + black text color 
+     + case selected: blue text color + blue underline color
+  - boderRound:
+     + case normal: blue background color + white text color 
+     + case selected: blue text color + rounded rectangle around text on white background
 ```swift
 public enum StyleScroll {
     case standard // page scroll with stops
     case infinite // endless page scroll
 }
 /**
-+ underLine:
+  + underLine:
       normal: white background color + black text color 
       selected: blue text color + blue underline color
   + boderRound:
