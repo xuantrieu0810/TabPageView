@@ -1,14 +1,13 @@
 import UIKit
 
-
-
 class RootTabPageViewController: UIViewController {
     
     static let identifier = "RootTabPage"
     
     private var currentIndexCell = 0
-    /**
-     
+     /**
+     - styleScrollPage: scrolling of pages(viewcontrollers)
+     - styleMenuTitle: title bar style on menu
      */
     var styleScrollPage: StyleScroll = .standard
     var styleMenuTitle: StyleMenu = .boderRound
