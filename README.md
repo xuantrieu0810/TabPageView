@@ -183,10 +183,10 @@ protocol TabPageDelegate: class {
 ```
 
 ### Customization
-# StyleScroll
+#### StyleScroll
   - standard: page scroll with stops
   - infinite: endless page scroll
-# StyleMenu 
+#### StyleMenu 
   - underLine:
      + case normal: white background color + black text color 
      + case selected: blue text color + blue underline color
