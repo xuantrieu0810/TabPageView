@@ -25,14 +25,19 @@ Features
 
 ### Example
 
-Here is an example of how to SwiftPageMenu.
+Here is an example of how to RootTabPageViewController.
+- You need to provide the following attributes:
+  + menuTitles:  the list of titles on the Tabpage's menu bar
+  + pageViewControllers:  child viewcontrollers located in the Tabpage corresponding to the titles on the menu bar
+  *The number of items of these 2 components must be equal and correspond to each other in terms of position in the array
+- You can set the following default styles:
+  + styleScrollPage: StyleScroll => scrolling of pages(viewcontrollers)
+  + styleMenuTitle: StyleMenu => title bar style on menu
 
 [TabPageView/Controller/RootTabPageViewController.swift](https://github.com/xuantrieu0810/TabPageView/blob/main/TabPageView/Controller/RootTabPageViewController.swift)
 
 ```swift
 import UIKit
-
-
 
 class RootTabPageViewController: UIViewController {
     
@@ -40,7 +45,8 @@ class RootTabPageViewController: UIViewController {
     
     private var currentIndexCell = 0
     /**
-     
+     - styleScrollPage: scrolling of pages(viewcontrollers)
+     - styleMenuTitle: title bar style on menu
      */
     var styleScrollPage: StyleScroll = .standard
     var styleMenuTitle: StyleMenu = .boderRound
@@ -151,7 +157,7 @@ extension RootTabPageViewController: TabPageDelegate {
 
 ### Delegate
 
-SwiftPageMenu give you the events below code.
+TabPageDelegate give you the events below code.
 
 ```swift
 protocol TabPageDelegate: class {
@@ -177,15 +183,31 @@ protocol TabPageDelegate: class {
 ```
 
 ### Customization
-
+- StyleScroll
+  + standard: page scroll with stops
+  + infinite: endless page scroll
+- StyleMenu 
+  + underLine:
+      case normal: white background color + black text color 
+      case selected: blue text color + blue underline color
+  + boderRound:
+      case normal: blue background color + white text color 
+      case selected: blue text color + rounded rectangle around text on white background
 ```swift
 public enum StyleScroll {
-    case standard
-    case infinite
+    case standard // page scroll with stops
+    case infinite // endless page scroll
 }
-
+/**
++ underLine:
+      normal: white background color + black text color 
+      selected: blue text color + blue underline color
+  + boderRound:
+      normal: blue background color + white text color 
+      selected: blue text color + rounded rectangle around text on white background
+*/
 public enum StyleMenu {
-    case underLine
+    case underLine 
     case boderRound
 }
 ```
