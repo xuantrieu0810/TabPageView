@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Second View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SecondViewController" customModule="TabPageView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.5" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="fYH-Wt-jui">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Vb-l9-oKW">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="o8D-8o-ZZk" appends="YES" id="TkQ-Lx-yli"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstItem="1Vb-l9-oKW" firstAttribute="leading" secondItem="fYH-Wt-jui" secondAttribute="leading" id="5AG-fR-aWT"/>
+                                    <constraint firstItem="1Vb-l9-oKW" firstAttribute="centerY" secondItem="fYH-Wt-jui" secondAttribute="centerY" id="Ayv-xN-xYa"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Vb-l9-oKW" secondAttribute="bottom" id="FKA-jC-fgf"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Vb-l9-oKW" secondAttribute="trailing" id="d5F-D2-NJe"/>
+                                    <constraint firstItem="1Vb-l9-oKW" firstAttribute="centerX" secondItem="fYH-Wt-jui" secondAttribute="centerX" id="kuW-lA-WUl"/>
+                                    <constraint firstItem="1Vb-l9-oKW" firstAttribute="top" secondItem="fYH-Wt-jui" secondAttribute="top" id="p5n-Bx-W41"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ctW-Qs-Mei"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="kaW-Yh-onP"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="6Mc-Td-2do"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fYH-Wt-jui" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="17C-PM-4KV"/>
+                            <constraint firstItem="fYH-Wt-jui" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3TP-v5-CG7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fYH-Wt-jui" secondAttribute="trailing" id="IkF-hY-gaQ"/>
+                            <constraint firstItem="fYH-Wt-jui" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xcc-gJ-LRX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="1Vb-l9-oKW" id="4HX-PB-NA3"/>
+                        <outlet property="scrollView" destination="fYH-Wt-jui" id="rqd-3o-qlm"/>
+                        <outlet property="tapGesture" destination="o8D-8o-ZZk" id="5zo-UR-lVK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="o8D-8o-ZZk">
+                    <connections>
+                        <action selector="tapGestureAction:" destination="BYZ-38-t0r" id="lHl-Fu-ygE"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="tRc-Tq-C0u"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="140.57971014492756" y="95.758928571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
