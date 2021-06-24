@@ -7,34 +7,49 @@ class TabPageViewController: UIPageViewController {
      - tabPageDelegate
      provided by RootViewController
      */
-    var currentIndexPage = 0
-    var styleScrollPage: StyleScroll = .standard
-    lazy var pageViewControllers: [UIViewController] = []
-    var tabPageDelegate: TabPageDelegate?
+    var styleScrollPage: StylePage = .standard
+    private var pageViewControllersCount = 0
+    private lazy var pageViewControllers: [UIViewController] = [] {
+        didSet {
+            self.pageViewControllersCount = pageViewControllers.count
+        }
+    }
+    weak var tabPageDelegate: TabPageDelegate?
+    weak var tabPageDataSource: TabPageDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         dataSource = self
-        setUpPageView()
+        self.pageViewControllers = tabPageDataSource?.tabMenuViewController(self, numberOfItemsInTabPage: 0) ?? []
+        reloadPageView()
     }
     
-    func setUpPageView() {
-        if currentIndexPage < pageViewControllers.count  {
-            scrollToViewController(viewController: pageViewControllers[currentIndexPage])
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
+    internal func reloadPageView() {
+        if let viewController = pageViewControllers.first {
+            setViewControllers([viewController], direction: .reverse, animated: false, completion: { _ in self.notifyTabPageDelegateOfNewIndex() })
         }
-        tabPageDelegate?.tabPageViewController(tabPageViewController: self, didUpdatePageCount: pageViewControllers.count)
+        tabPageDelegate?.tabPageViewController(tabPageViewController: self, didUpdatePageCount: pageViewControllersCount)
     }
     
+    internal func setViewControllerDefault(indexDefault: Int) {
+        scrollToViewController(viewController: pageViewControllers[indexDefault], direction: .reverse)
+    }
     /**
      Scrolls to the view controller at the given index. Automatically calculates the direction.
      - parameter newIndex: the new index to scroll to
      */
-    func scrollToViewController(index newIndex: Int) {
+    internal func scrollToViewController(index newIndex: Int) {
         guard newIndex < pageViewControllers.count else {
             return
         }
         if let firstViewController = viewControllers?.first, let currentIndex = pageViewControllers.firstIndex(of: firstViewController) {
+            guard newIndex != currentIndex else {
+                return
+            }
             let direction: UIPageViewController.NavigationDirection = newIndex >= currentIndex ? .forward : .reverse
             let nextViewController = pageViewControllers[newIndex]
             scrollToViewController(viewController: nextViewController, direction: direction)
@@ -54,12 +69,10 @@ class TabPageViewController: UIPageViewController {
      Notifies '_tabPageDelegate' that the current page index was updated.
      */
     private func notifyTabPageDelegateOfNewIndex() {
-        if let firstViewController = viewControllers?.first,
-           let index = pageViewControllers.firstIndex(of: firstViewController) {
+        if let firstViewController = viewControllers?.first, let index = pageViewControllers.firstIndex(of: firstViewController) {
             tabPageDelegate?.tabPageViewController(tabPageViewController: self, didUpdatePageIndex: index)
         }
     }
-    
 }
 
 // MARK: UIPageViewControllerDataSource

@@ -1,7 +1,9 @@
 import UIKit
 
-class HomeCell: UICollectionViewCell {
+class TabMenuCell: UICollectionViewCell {
 
+    static var cellIdentifier: String  = "TabMenuCell"
+    
     var styleCell: StyleMenu?
     
     override var isSelected: Bool {
@@ -18,14 +20,13 @@ class HomeCell: UICollectionViewCell {
     }
     
     func setUpCell() {
+        self.lableCell.textColor = styleCell?.getTextColor(isSelected: isSelected)
         switch styleCell {
-        case .boderRound:
+        case .boderRound(_, _, _, let bgSelected,  _):
             self.layer.cornerRadius = self.frame.height/2
-            self.backgroundColor = isSelected ? .white : .blue
-            self.lableCell.textColor = isSelected ? .blue : .white
-        case .underLine:
-            self.layer.addBorder(edge: .bottom, color: isSelected ? .blue : .white, thickness: 2)
-            self.lableCell.textColor = isSelected ? .blue : .darkGray
+            self.backgroundColor = isSelected ? bgSelected : .clear
+        case .underline( let bgColor, _, let lineColor, let widthLine, _):
+            self.layer.addBorder(edge: .bottom, color: isSelected ? lineColor : bgColor, thickness: widthLine)
         case .none:
             break
         }

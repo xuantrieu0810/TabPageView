@@ -1,6 +1,6 @@
-import Foundation
+import UIKit
 
-protocol TabPageDelegate: class {
+protocol TabPageDelegate: AnyObject {
     
     /**
      Called when the number of pages is updated.
@@ -18,5 +18,10 @@ protocol TabPageDelegate: class {
      */
     func tabPageViewController(tabPageViewController: TabPageViewController,
         didUpdatePageIndex index: Int)
+    
+}
+
+protocol TabPageDataSource: AnyObject {
+    func tabMenuViewController(_ tabPageViewController: TabPageViewController, numberOfItemsInTabPage: Int) -> [UIViewController]
     
 }

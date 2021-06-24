@@ -5,39 +5,27 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--TabPage-->
         <scene sceneID="Nva-kL-ndy">
             <objects>
-                <viewController storyboardIdentifier="RootTabPage" title="TabPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j7c-RU-BbQ" customClass="RootTabPageViewController" customModule="TabPageView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TabPage" title="TabPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j7c-RU-BbQ" customClass="TabPageController" customModule="TabPageView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PzG-9c-csB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jI1-kX-79e">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQH-qF-LmR">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="750" constant="50" id="X0Q-nz-BBx"/>
+                                    <constraint firstAttribute="height" constant="50" id="aP7-VZ-iXn"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xmR-fk-Fes">
-                                    <size key="itemSize" width="100" height="50"/>
-                                    <size key="headerReferenceSize" width="50" height="50"/>
-                                    <size key="footerReferenceSize" width="50" height="50"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1ob-fV-1HB">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionReusableView>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="egQ-n8-e1b">
-                                    <rect key="frame" x="50" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionReusableView>
-                            </collectionView>
+                                <connections>
+                                    <segue destination="XEN-uT-h69" kind="embed" identifier="segueTabMenu" id="hrc-hm-Hhc"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOM-nG-CeV">
                                 <rect key="frame" x="0.0" y="94" width="414" height="802"/>
                                 <connections>
@@ -48,19 +36,15 @@
                         <viewLayoutGuide key="safeArea" id="piA-1G-4yS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="piA-1G-4yS" firstAttribute="trailing" secondItem="jI1-kX-79e" secondAttribute="trailing" id="GCe-4G-UXo"/>
-                            <constraint firstItem="jI1-kX-79e" firstAttribute="top" secondItem="piA-1G-4yS" secondAttribute="top" id="QBz-d6-NKc"/>
+                            <constraint firstItem="AQH-qF-LmR" firstAttribute="trailing" secondItem="piA-1G-4yS" secondAttribute="trailing" id="3CH-EF-ADA"/>
+                            <constraint firstItem="ZOM-nG-CeV" firstAttribute="top" secondItem="AQH-qF-LmR" secondAttribute="bottom" id="9qe-o5-pF7"/>
+                            <constraint firstItem="AQH-qF-LmR" firstAttribute="leading" secondItem="piA-1G-4yS" secondAttribute="leading" id="BL8-e8-iYi"/>
                             <constraint firstItem="ZOM-nG-CeV" firstAttribute="leading" secondItem="piA-1G-4yS" secondAttribute="leading" id="RYF-ND-lFs"/>
                             <constraint firstAttribute="bottom" secondItem="ZOM-nG-CeV" secondAttribute="bottom" id="XBL-tj-fwJ"/>
                             <constraint firstItem="ZOM-nG-CeV" firstAttribute="trailing" secondItem="piA-1G-4yS" secondAttribute="trailing" id="euW-rE-7em"/>
-                            <constraint firstItem="jI1-kX-79e" firstAttribute="leading" secondItem="piA-1G-4yS" secondAttribute="leading" id="mKg-md-Xjc"/>
-                            <constraint firstItem="ZOM-nG-CeV" firstAttribute="top" secondItem="jI1-kX-79e" secondAttribute="bottom" id="nQO-tP-636"/>
+                            <constraint firstItem="AQH-qF-LmR" firstAttribute="top" secondItem="piA-1G-4yS" secondAttribute="top" id="v6H-1Y-DZd"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="collectionViewMenu" destination="jI1-kX-79e" id="yTZ-9V-vD1"/>
-                        <outlet property="containerView" destination="ZOM-nG-CeV" id="Igw-Ng-ZKs"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7k-95-min" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,10 +53,10 @@
         <!--Tab Page View Controller-->
         <scene sceneID="96z-a2-AFH">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="EDt-3t-m7m" customClass="TabPageViewController" customModule="TabPageView" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="TabPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="EDt-3t-m7m" customClass="TabPageViewController" customModule="TabPageView" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8CT-24-bfr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="274" y="-263"/>
+            <point key="canvasLocation" x="181" y="-233"/>
         </scene>
         <!--Setting Tab Page View Controller-->
         <scene sceneID="5Pp-3m-E5s">
@@ -212,6 +196,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7eV-0F-glg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1275" y="-295"/>
+        </scene>
+        <!--Tab Menu View Controller-->
+        <scene sceneID="0ni-pE-NE5">
+            <objects>
+                <viewController id="XEN-uT-h69" customClass="TabMenuViewController" customModule="TabPageView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3aI-ua-fU2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iaU-H8-syo">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eJe-dk-eaw">
+                                    <size key="itemSize" width="191" height="49"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="TabMenuCell" id="ktS-g0-1wy" customClass="TabMenuCell" customModule="TabPageView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.5" width="191" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="L0V-7t-Mri">
+                                            <rect key="frame" x="0.0" y="0.0" width="191" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zn-Mi-gRX">
+                                                    <rect key="frame" x="15" y="10" width="161" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="5Zn-Mi-gRX" firstAttribute="leading" secondItem="L0V-7t-Mri" secondAttribute="leading" constant="15" id="But-6z-U9x"/>
+                                                <constraint firstAttribute="trailing" secondItem="5Zn-Mi-gRX" secondAttribute="trailing" constant="15" id="Uek-bb-fVF"/>
+                                                <constraint firstAttribute="bottom" secondItem="5Zn-Mi-gRX" secondAttribute="bottom" constant="10" id="dYy-sz-rPV"/>
+                                                <constraint firstItem="5Zn-Mi-gRX" firstAttribute="top" secondItem="L0V-7t-Mri" secondAttribute="top" constant="10" id="x7b-Dh-KoY"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="customSize" width="191" height="49"/>
+                                        <connections>
+                                            <outlet property="lableCell" destination="5Zn-Mi-gRX" id="7zJ-rd-GaO"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lVc-Hk-ELJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="iaU-H8-syo" secondAttribute="bottom" id="5KP-tP-SfQ"/>
+                            <constraint firstAttribute="trailing" secondItem="iaU-H8-syo" secondAttribute="trailing" id="U6I-8f-0Ea"/>
+                            <constraint firstItem="iaU-H8-syo" firstAttribute="top" secondItem="3aI-ua-fU2" secondAttribute="top" id="Wvl-Vt-boT"/>
+                            <constraint firstItem="iaU-H8-syo" firstAttribute="leading" secondItem="3aI-ua-fU2" secondAttribute="leading" id="ZF6-4a-CYZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="iaU-H8-syo" id="5ew-EC-bLK"/>
+                        <outlet property="collectionViewFlowLayout" destination="eJe-dk-eaw" id="1sE-Co-r1e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1zf-fS-3o5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="180" y="-554"/>
         </scene>
     </scenes>
     <resources>
