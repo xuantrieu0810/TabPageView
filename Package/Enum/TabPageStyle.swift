@@ -1,17 +1,26 @@
 import Foundation
 import UIKit
 
-struct TabPageStyle {
+public struct TabPageStyle {
     var styleTabMenu: StyleMenu
     var styleTabPage: StylePage
+    
+    public static func getStyleFromUserDefault() -> TabPageStyle {
+        guard let styleTabPage = StylePage(rawValue: UserDefaults.standard.integer(forKey: "tabPageStyle")), let styleTabMenu = StyleMenu(rawValue: UserDefaults.standard.integer(forKey: "tabMenuStyle"))  else {
+            UserDefaults.standard.set(1, forKey: "tabPageStyle")
+            UserDefaults.standard.set(1, forKey: "tabMenuStyle")
+            return TabPageStyle(styleTabMenu: StyleMenu.init(rawValue: 1)!, styleTabPage: StylePage.init(rawValue: 1)!)
+        }
+        return TabPageStyle(styleTabMenu: styleTabMenu, styleTabPage: styleTabPage)
+    }
 }
 
-public enum StylePage: Int {
+enum StylePage: Int {
     case standard = 1
     case infinite = 2
     static let allValues = [standard, infinite]
     
-    public init?(rawValue: Int) {
+    init?(rawValue: Int) {
         switch rawValue {
         case 1: self = .standard
         case 2: self = .infinite
@@ -20,7 +29,7 @@ public enum StylePage: Int {
     }
 }
 
-public enum StyleMenu {
+enum StyleMenu {
     
     case underline(barColor: UIColor, textColorNormal: UIColor, textColorSelected: UIColor, widthLine: CGFloat, height: CGFloat)
     case boderRound(barColor: UIColor, textColorNormal: UIColor, textColorSelected: UIColor, bgSelected: UIColor = .white, height: CGFloat)
@@ -59,14 +68,14 @@ extension StyleMenu {
 
 extension StyleMenu: RawRepresentable {
     
-    public var rawValue: Int {
+    var rawValue: Int {
         switch self {
         case .boderRound(_,_,_,_,_): return 1
         case .underline(_,_,_,_,_): return 2
         }
     }
     
-    public init?(rawValue: Int) {
+    init?(rawValue: Int) {
         let styleMenuBoderRound: StyleMenu = .boderRound(barColor: .blue, textColorNormal: .white, textColorSelected: .blue, bgSelected: .white, height: 40)
         let styleMenuUnderline: StyleMenu = .underline(barColor: .white, textColorNormal: .darkGray, textColorSelected: .blue, widthLine: 2.0, height: 40.0)
         switch rawValue {

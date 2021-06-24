@@ -2,6 +2,11 @@ import UIKit
 
 open class TabPageController: UIViewController {
     
+    public static let bundle = Bundle(for: TabPageController.self)
+    public static let identifier = "TabPage"
+    public static let nameStoryboard = "TabPage"
+    @IBOutlet weak var containerTabMenu: UIView!
+    @IBOutlet weak var containerTabPage: UIView!
     private var isBackToParent = false
     private var currentIndexMenu = 0
     private var currentIndexPage = 0
@@ -27,27 +32,13 @@ open class TabPageController: UIViewController {
     private var tabMenuViewController: TabMenuViewController?
     private var tabPageViewController: TabPageViewController?
     
-//    init(tabPageStyle: TabPageStyle? = nil) {
-//        print("init 1")
-//        self.tabPageStyle = tabPageStyle
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required public init?(coder: NSCoder) {
-//        print("init 2")
-////        self.options = DefaultPageMenuOption()
-//        super.init(coder: coder)
-//    }
-
-//    init?(coder: NSCoder, tabPageStyle: TabPageStyle? = nil) {
-//        print("init 3")
-//        self.tabPageStyle = tabPageStyle
-//        super.init(coder: coder)
-//    }
     /**
-        #2
+        #init() #1
      */
-    init?(coder: NSCoder, menuTitles: [String], viewControllers: [UIViewController], tabPageStyle: TabPageStyle) {
+    public init?(coder: NSCoder, menuTitles: [String], viewControllers: [UIViewController], tabPageStyle: TabPageStyle) {
+        guard menuTitles.count == viewControllers.count else {
+            return nil
+        }
         super.init(coder: coder)
         self.menuTitles = menuTitles
         self.viewControllers = viewControllers
@@ -55,15 +46,14 @@ open class TabPageController: UIViewController {
     }
     
     required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
-    /**
-            ###
-     */
-    
+
     open override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editMenuAction))
+
+        containerTabMenu.addSubview((tabMenuViewController?.view)!)
+        containerTabPage.addSubview((tabPageViewController?.view)!)
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -110,15 +100,14 @@ open class TabPageController: UIViewController {
         currentIndex = dataSource?.defaultPageIndex(forTabPageController: self)
     }
     
-    /// func editMenuAction: go to a VỉewController to edit styleScroll and styleMenuTitle
-    @objc func editMenuAction() {
-        let vc = UIStoryboard(name: "TabPage", bundle: nil).instantiateViewController(withIdentifier: SettingTabPageViewController.identifier) as? SettingTabPageViewController
-        if let vc = vc , let navi = navigationController{
-            vc.styleTabPage = tabPageStyle?.styleTabPage
-            vc.styleTabMenu = tabPageStyle?.styleTabMenu
-            navi.pushViewController(vc, animated: true)
+    // MARK: - Static function go to setting tabpage
+    public static func goToSetting(navigationController: UINavigationController!) {
+        let vc = UIStoryboard(name: "TabPage", bundle: Bundle(for: SettingTabPageViewController.self)).instantiateViewController(withIdentifier: SettingTabPageViewController.identifier) as? SettingTabPageViewController
+        if let vc = vc {
+            navigationController.pushViewController(vc, animated: true)
         }
     }
+    
 }
 
 //MARK: - TabPageDelegate

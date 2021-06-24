@@ -6,11 +6,11 @@ class TabMenuViewController: UIViewController {
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            self.collectionView.backgroundColor = styleMenuTitle.barColor
+            self.collectionView.backgroundColor = styleMenuTitle?.barColor
         }
     }
     
-    var styleMenuTitle: StyleMenu = .boderRound(barColor: .blue, textColorNormal: .white, textColorSelected: .blue, bgSelected: .lightGray, height: 40)
+    var styleMenuTitle: StyleMenu?
 
     /// tab menu titles
     var menuItemsCount = 0
@@ -66,7 +66,7 @@ extension TabMenuViewController : UICollectionViewDelegate, UICollectionViewData
 
     func configureCell(_ cell: TabMenuCell, indexPath: IndexPath) {
         cell.lableCell.text = menuItems[indexPath.row]
-        cell.customStyleCell(style: styleMenuTitle)
+        cell.customStyleCell(style: styleMenuTitle!)
     }
     /// Handle event click into a cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

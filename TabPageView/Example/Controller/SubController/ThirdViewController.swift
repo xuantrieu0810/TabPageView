@@ -9,6 +9,7 @@ import UIKit
 
 class ThirdViewController: UIViewController {
 
+    static let identifier = "ThirdViewController"
     @IBOutlet weak var btnEdit: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var pfSelected: Profile?

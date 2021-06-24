@@ -7,7 +7,7 @@ class TabPageViewController: UIPageViewController {
      - tabPageDelegate
      provided by RootViewController
      */
-    var styleScrollPage: StylePage = .standard
+    var styleScrollPage: StylePage?
     private var pageViewControllersCount = 0
     private lazy var pageViewControllers: [UIViewController] = [] {
         didSet {

@@ -10,6 +10,7 @@ import MapKit
 
 class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
+    static let identifier = "FirstViewController"
     @IBOutlet weak var mapView: MKMapView!
     //MARK: - Properties
     var locationManager =  CLLocationManager()
